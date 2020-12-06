@@ -1,6 +1,6 @@
   <connection>
     <name>hospital</name>
-    <server>127.0.0.1</server>
+    <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>hospital</database>

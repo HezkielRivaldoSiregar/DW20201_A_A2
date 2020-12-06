@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>nurse</name>
+    <name>patient</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -426,10 +426,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/12/06 18:27:51.153</created_date>
+    <created_date>2020/12/06 21:24:29.637</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/12/06 23:46:39.196</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2020/12/06 23:30:04.337</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -546,14 +546,44 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
-      <to>Combination lookup/update</to>
+      <from>lookup job</from>
+      <to>lookup areaKey</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup areaKey</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>age range</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>patient input</from>
+      <to>Merge join get phone</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>patient information</from>
+      <to>Merge join get phone</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join get phone</from>
+      <to>lookup job</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>age range</from>
+      <to>Dimension lookup/update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Combination lookup/update</name>
-    <type>CombinationLookup</type>
+    <name>patient information</name>
+    <type>ExcelInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -562,44 +592,152 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <schema>hospitaldw</schema>
-    <table>nurse</table>
-    <connection>hospitaldw</connection>
-    <commit>100</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
+    <header>Y</header>
+    <noempty>Y</noempty>
+    <stoponempty>N</stoponempty>
+    <filefield/>
+    <sheetfield/>
+    <sheetrownumfield/>
+    <rownumfield/>
+    <sheetfield/>
+    <filefield/>
+    <limit>0</limit>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <accept_filenames>N</accept_filenames>
+    <accept_field/>
+    <accept_stepname/>
+    <file>
+      <name>/home/desendo/Documents/GitHub/DW20201_A_A2/DataProject/Patient-Information.xlsx</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
     <fields>
-      <key>
-        <name>Name</name>
-        <lookup>nurseName</lookup>
-      </key>
-      <key>
-        <name>Position</name>
-        <lookup>position</lookup>
-      </key>
-      <key>
-        <name>Registered</name>
-        <lookup>registered</lookup>
-      </key>
-      <key>
-        <name>SSN</name>
-        <lookup>SSN</lookup>
-      </key>
-      <key>
-        <name>EmployeeID</name>
-        <lookup>employeeId</lookup>
-      </key>
-      <return>
-        <name>nurseKey</name>
-        <creation_method>autoinc</creation_method>
-        <use_autoinc>Y</use_autoinc>
-      </return>
+      <field>
+        <name>patient-ssn</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format>#</format>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>patient-name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>patient-gender</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>patient-occupation-subcategory</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>occupation-major-group</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>patient-isfromabroad</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>patient-age</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>patient-singapore-area</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
     </fields>
-    <sequence/>
-    <last_update_field/>
+    <sheets>
+      <sheet>
+        <name>patient-info</name>
+        <startrow>0</startrow>
+        <startcol>0</startcol>
+      </sheet>
+    </sheets>
+    <strict_types>N</strict_types>
+    <error_ignored>N</error_ignored>
+    <error_line_skipped>N</error_line_skipped>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>POI</spreadsheet_type>
+    <password>Encrypted </password>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -609,13 +747,322 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
+      <xloc>96</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup areaKey</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>hospitaldw</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>hospitaldw</schema>
+      <table>area</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>patient-singapore-area</name>
+        <field>areaLocation</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>areaKey</name>
+        <rename>areaKey</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table input</name>
+    <name>lookup job</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>hospitaldw</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>patientJob</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>patient-occupation-subcategory</name>
+        <field>jobName</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>jobKey</name>
+        <rename>jobKey</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>jobKey</name>
+        <rename/>
+      </field>
+      <field>
+        <name>areaKey</name>
+        <rename/>
+      </field>
+      <field>
+        <name>patient-ssn</name>
+        <rename>patientSSN</rename>
+      </field>
+      <field>
+        <name>patient-age</name>
+        <rename>age</rename>
+      </field>
+      <field>
+        <name>Phone</name>
+        <rename>phone</rename>
+      </field>
+      <field>
+        <name>Address</name>
+        <rename>address</rename>
+      </field>
+      <field>
+        <name>patient-isfromabroad</name>
+        <rename>isFromAbroad</rename>
+      </field>
+      <field>
+        <name>patient-gender</name>
+        <rename>gender</rename>
+      </field>
+      <field>
+        <name>patient-name</name>
+        <rename>patientName</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dimension lookup/update</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema/>
+    <table>patient</table>
+    <connection>hospitaldw</connection>
+    <commit>100</commit>
+    <update>Y</update>
+    <fields>
+      <key>
+        <name>patientSSN</name>
+        <lookup>patientSSN</lookup>
+      </key>
+      <key>
+        <name>age</name>
+        <lookup>age</lookup>
+      </key>
+      <key>
+        <name>gender</name>
+        <lookup>gender</lookup>
+      </key>
+      <key>
+        <name>patientName</name>
+        <lookup>patientName</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>date_from</from>
+        <to>date_to</to>
+      </date>
+      <field>
+        <name>jobKey</name>
+        <lookup>jobKey</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>areaKey</name>
+        <lookup>areaKey</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>phone</name>
+        <lookup>phone</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>address</name>
+        <lookup>address</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>isFromAbroad</name>
+        <lookup>isFromAbroad</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ageCategory</name>
+        <lookup>ageCategory</lookup>
+        <update>Insert</update>
+      </field>
+      <return>
+        <name>patientKey</name>
+        <rename/>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+        <version>version</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>age range</name>
+    <type>NumberRange</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <inputField>age</inputField>
+    <outputField>ageCategory</outputField>
+    <fallBackValue>unknown</fallBackValue>
+    <rules>
+      <rule>
+        <lower_bound>1.0</lower_bound>
+        <upper_bound>19.0</upper_bound>
+        <value>CHILD</value>
+      </rule>
+      <rule>
+        <lower_bound>19.0</lower_bound>
+        <upper_bound>31.0</upper_bound>
+        <value>YOUNGADULT</value>
+      </rule>
+      <rule>
+        <lower_bound>31.0</lower_bound>
+        <upper_bound>61.0</upper_bound>
+        <value>ADULT</value>
+      </rule>
+      <rule>
+        <lower_bound>61.0</lower_bound>
+        <upper_bound>1.7976931348623157E308</upper_bound>
+        <value>ELDERLY</value>
+      </rule>
+    </rules>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>patient input</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -626,7 +1073,7 @@
       <schema_name/>
     </partitioning>
     <connection>Hospital</connection>
-    <sql>SELECT * FROM nurse;</sql>
+    <sql>SELECT * FROM patient</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -637,11 +1084,11 @@
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>EmployeeID</name>
+        <name>SSN</name>
         <length>9</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>EmployeeID</comments>
+        <comments>SSN</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -654,7 +1101,7 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Asia/Bangkok</date_format_timezone>
+        <date_format_timezone>Asia/Jakarta</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -677,17 +1124,17 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Asia/Bangkok</date_format_timezone>
+        <date_format_timezone>Asia/Jakarta</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Position</name>
+        <name>Address</name>
         <length>30</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Position</comments>
+        <comments>Address</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -700,17 +1147,17 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Asia/Bangkok</date_format_timezone>
+        <date_format_timezone>Asia/Jakarta</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Boolean</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Registered</name>
-        <length>-1</length>
+        <name>Phone</name>
+        <length>30</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>Registered</comments>
+        <comments>Phone</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -723,17 +1170,17 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Asia/Bangkok</date_format_timezone>
+        <date_format_timezone>Asia/Jakarta</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>SSN</name>
+        <name>InsuranceID</name>
         <length>9</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>SSN</comments>
+        <comments>InsuranceID</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -746,7 +1193,30 @@
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Asia/Bangkok</date_format_timezone>
+        <date_format_timezone>Asia/Jakarta</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>PCP</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>PCP</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Asia/Jakarta</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
@@ -760,6 +1230,40 @@
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join get phone</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>patient information</step1>
+    <step2>patient input</step2>
+    <keys_1>
+      <key>patient-ssn</key>
+    </keys_1>
+    <keys_2>
+      <key>SSN</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>

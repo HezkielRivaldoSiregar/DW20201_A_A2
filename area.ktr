@@ -428,8 +428,8 @@
     <created_user>-</created_user>
     <created_date>2020/12/06 15:59:44.361</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/12/06 16:06:41.481</modified_date>
-    <key_for_session_key/>
+    <modified_date>2020/12/06 21:59:02.215</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -502,6 +502,11 @@
     </hop>
     <hop>
       <from>Select values</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
       <to>area</to>
       <enabled>Y</enabled>
     </hop>
@@ -533,7 +538,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>E:\Materi Kuliah\Semester 5\Data Warehouse\DW20201_A_A2\DataProject\Singapore-Area.xlsx</name>
+      <name>/home/desendo/Documents/GitHub/DW20201_A_A2/DataProject/Singapore-Area.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -606,6 +611,37 @@
     </GUI>
   </step>
   <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>area</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Split field to rows</name>
     <type>SplitFieldToRows3</type>
     <description/>
@@ -633,37 +669,6 @@
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>area</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -714,8 +719,48 @@
       </output>
     </remotesteps>
     <GUI>
+      <xloc>560</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>areaLocation</in_stream_name>
+        <out_stream_name/>
+        <trim_type>left</trim_type>
+        <lower_upper/>
+        <padding_type/>
+        <pad_char/>
+        <pad_len/>
+        <init_cap/>
+        <mask_xml/>
+        <digits/>
+        <remove_special_characters/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
       <xloc>448</xloc>
-      <yloc>208</yloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

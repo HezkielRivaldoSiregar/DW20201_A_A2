@@ -428,8 +428,8 @@
     <created_user>-</created_user>
     <created_date>2020/12/06 18:43:44.785</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/12/06 19:32:53.706</modified_date>
-    <key_for_session_key/>
+    <modified_date>2020/12/06 21:23:24.807</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -502,6 +502,57 @@
     </hop>
   </order>
   <step>
+    <name>Combination lookup/update</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>hospitaldw</schema>
+    <table>patientJob</table>
+    <connection>hospitaldw</connection>
+    <commit>100</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>jobName</name>
+        <lookup>jobName</lookup>
+      </key>
+      <key>
+        <name>jobCategory</name>
+        <lookup>jobCategory</lookup>
+      </key>
+      <return>
+        <name>jobKey</name>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Microsoft Excel input</name>
     <type>ExcelInput</type>
     <description/>
@@ -528,7 +579,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>E:\Materi Kuliah\Semester 5\Data Warehouse\DW20201_A_A2\DataProject\Patient-Information.xlsx</name>
+      <name>/home/desendo/Documents/Data Warehouse/DW20201_A_A7-1.0/DataProject/Patient-Information.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -704,57 +755,6 @@
     </remotesteps>
     <GUI>
       <xloc>272</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Combination lookup/update</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema/>
-    <table>patientjob</table>
-    <connection>hospitaldw</connection>
-    <commit>100</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>jobName</name>
-        <lookup>jobName</lookup>
-      </key>
-      <key>
-        <name>jobCategory</name>
-        <lookup>jobCategory</lookup>
-      </key>
-      <return>
-        <name>jobKey</name>
-        <creation_method>autoinc</creation_method>
-        <use_autoinc>Y</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>400</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
