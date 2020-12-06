@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2020/12/06 23:27:42.158</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/12/07 01:14:07.198</modified_date>
+    <modified_date>2020/12/07 02:37:18.405</modified_date>
     <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
@@ -647,7 +647,7 @@
         <name>AppointmentID</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>AppointmentID</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -670,7 +670,7 @@
         <name>Patient</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>Patient</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -693,7 +693,7 @@
         <name>PrepNurse</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>PrepNurse</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -716,7 +716,7 @@
         <name>Physician</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>Physician</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -739,7 +739,7 @@
         <name>Start</name>
         <length>0</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>Start</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -762,7 +762,7 @@
         <name>End</name>
         <length>0</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>End</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -785,7 +785,7 @@
         <name>ExaminationRoom</name>
         <length>16383</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>ExaminationRoom</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -808,7 +808,7 @@
         <name>AppointmentCost</name>
         <length>10</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>input appointment</origin>
         <comments>AppointmentCost</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -866,7 +866,7 @@
         <name>Medication</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>input appointment 2</origin>
+        <origin>input prescribes</origin>
         <comments>Medication</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -889,7 +889,7 @@
         <name>Appointment</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>input appointment 2</origin>
+        <origin>input prescribes</origin>
         <comments>Appointment</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -912,7 +912,7 @@
         <name>Dose</name>
         <length>30</length>
         <precision>-1</precision>
-        <origin>input appointment 2</origin>
+        <origin>input prescribes</origin>
         <comments>Dose</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>

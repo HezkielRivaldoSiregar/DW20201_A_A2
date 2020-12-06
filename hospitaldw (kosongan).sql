@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 06, 2020 at 07:22 PM
+-- Generation Time: Dec 06, 2020 at 09:15 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -88,19 +88,16 @@ CREATE TABLE `nurse` (
 
 CREATE TABLE `patient` (
   `patientKey` int(11) NOT NULL,
-  `jobKey` int(11) DEFAULT NULL,
+  `jobKey` int(11) NOT NULL,
   `areaKey` int(11) DEFAULT NULL,
-  `patientSSN` varchar(15) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `ageCategory` varchar(50) DEFAULT NULL,
-  `phone` varchar(100) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `isFromAbroad` enum('Y','N') DEFAULT NULL,
-  `gender` enum('M','F') DEFAULT NULL,
-  `patientName` varchar(255) DEFAULT NULL,
-  `version` int(11) DEFAULT NULL,
-  `date_from` datetime DEFAULT NULL,
-  `date_to` datetime DEFAULT NULL
+  `patientSSN` varchar(15) NOT NULL,
+  `age` int(11) NOT NULL,
+  `ageCategory` varchar(50) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `isFromAbroad` enum('Y','N') NOT NULL,
+  `gender` enum('M','F') NOT NULL,
+  `patientName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

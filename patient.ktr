@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2020/12/06 21:24:29.637</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/12/06 23:30:04.337</modified_date>
+    <modified_date>2020/12/07 03:09:50.873</modified_date>
     <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
@@ -578,6 +578,11 @@
     <hop>
       <from>age range</from>
       <to>Dimension lookup/update</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>age range</from>
+      <to>Combination lookup/update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -953,32 +958,32 @@
       <field>
         <name>jobKey</name>
         <lookup>jobKey</lookup>
-        <update>Insert</update>
+        <update>Punch through</update>
       </field>
       <field>
         <name>areaKey</name>
         <lookup>areaKey</lookup>
-        <update>Insert</update>
+        <update>Punch through</update>
       </field>
       <field>
         <name>phone</name>
         <lookup>phone</lookup>
-        <update>Insert</update>
+        <update>Punch through</update>
       </field>
       <field>
         <name>address</name>
         <lookup>address</lookup>
-        <update>Insert</update>
+        <update>Punch through</update>
       </field>
       <field>
         <name>isFromAbroad</name>
         <lookup>isFromAbroad</lookup>
-        <update>Insert</update>
+        <update>Punch through</update>
       </field>
       <field>
         <name>ageCategory</name>
         <lookup>ageCategory</lookup>
-        <update>Insert</update>
+        <update>Punch through</update>
       </field>
       <return>
         <name>patientKey</name>
@@ -1006,8 +1011,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>880</xloc>
-      <yloc>112</yloc>
+      <xloc>960</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1087,7 +1092,7 @@
         <name>SSN</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>patient input</origin>
         <comments>SSN</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1110,7 +1115,7 @@
         <name>Name</name>
         <length>30</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>patient input</origin>
         <comments>Name</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1133,7 +1138,7 @@
         <name>Address</name>
         <length>30</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>patient input</origin>
         <comments>Address</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1156,7 +1161,7 @@
         <name>Phone</name>
         <length>30</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>patient input</origin>
         <comments>Phone</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1179,7 +1184,7 @@
         <name>InsuranceID</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>patient input</origin>
         <comments>InsuranceID</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1202,7 +1207,7 @@
         <name>PCP</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>patient input</origin>
         <comments>PCP</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1265,6 +1270,188 @@
     <GUI>
       <xloc>208</xloc>
       <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Combination lookup/update</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>hospitaldw</schema>
+    <table>patient</table>
+    <connection>hospitaldw</connection>
+    <commit>100</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>jobKey</name>
+        <lookup>jobKey</lookup>
+      </key>
+      <key>
+        <name>areaKey</name>
+        <lookup>areaKey</lookup>
+      </key>
+      <key>
+        <name>patientSSN</name>
+        <lookup>patientSSN</lookup>
+      </key>
+      <key>
+        <name>age</name>
+        <lookup>age</lookup>
+      </key>
+      <key>
+        <name>ageCategory</name>
+        <lookup>ageCategory</lookup>
+      </key>
+      <key>
+        <name>phone</name>
+        <lookup>phone</lookup>
+      </key>
+      <key>
+        <name>address</name>
+        <lookup>address</lookup>
+      </key>
+      <key>
+        <name>isFromAbroad</name>
+        <lookup>isFromAbroad</lookup>
+      </key>
+      <key>
+        <name>gender</name>
+        <lookup>gender</lookup>
+      </key>
+      <key>
+        <name>patientName</name>
+        <lookup>patientName</lookup>
+      </key>
+      <return>
+        <name>patientKey</name>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>960</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dimension lookup/update backup</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema/>
+    <table>patient</table>
+    <connection>hospitaldw</connection>
+    <commit>100</commit>
+    <update>Y</update>
+    <fields>
+      <key>
+        <name>patientSSN</name>
+        <lookup>patientSSN</lookup>
+      </key>
+      <key>
+        <name>age</name>
+        <lookup>age</lookup>
+      </key>
+      <key>
+        <name>gender</name>
+        <lookup>gender</lookup>
+      </key>
+      <key>
+        <name>patientName</name>
+        <lookup>patientName</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>date_from</from>
+        <to>date_to</to>
+      </date>
+      <field>
+        <name>jobKey</name>
+        <lookup>jobKey</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>areaKey</name>
+        <lookup>areaKey</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>phone</name>
+        <lookup>phone</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>address</name>
+        <lookup>address</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>isFromAbroad</name>
+        <lookup>isFromAbroad</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ageCategory</name>
+        <lookup>ageCategory</lookup>
+        <update>Insert</update>
+      </field>
+      <return>
+        <name>patientKey</name>
+        <rename/>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+        <version>version</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1120</xloc>
+      <yloc>0</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
